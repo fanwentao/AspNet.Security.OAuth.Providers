@@ -1,2 +1,2 @@
 # AspNet.Security.OAuth.Providers
-OAuth2 authentication middleware for ASP.NET 5
+OAuth2 authentication middleware for ASP.NET 4.5
