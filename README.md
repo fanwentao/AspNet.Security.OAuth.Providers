@@ -30,5 +30,22 @@
         appKey:"******"
     );
     
+## 配置回调地址
+
+回调地址必须和第三方登录应用程序的配置相同.
+回调地址基于 Katana 默认约定,也可以手动创建 Options 配置 CallbackPath 属性
+
+* Weibo: /signin-weibo
+
+* WeChat: /signin-wechat
+
+* Tencent: /signin-tencent
 
 
+    app.UseTencentAuthentication(new TencentAuthenticationOptions
+            {
+                AppId = "******",
+                AppKey = "******",
+                CallbackPath = new PathString("你的回调地址")
+            }
+    );
