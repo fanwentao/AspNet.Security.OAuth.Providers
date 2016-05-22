@@ -1,4 +1,4 @@
-# OAuth2.0 基于OWin外部登录中间件
+# OAuth2.0 基于OWIN外部登录中间件实现
 
 OAuth2.0 Providers for ASP.NET 4.5 Implementation from **[Katana](http://katanaproject.codeplex.com/)**
 
