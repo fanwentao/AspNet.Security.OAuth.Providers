@@ -25,6 +25,10 @@
         clientId:"******",
         clientSecret:"******"
     );
+    app.UseTencentAuthentication(
+        appId:"******",
+        appKey:"******"
+    );
     
 
 
