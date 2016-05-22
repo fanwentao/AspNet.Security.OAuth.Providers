@@ -83,7 +83,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Microsoft.Owin.Security.Core\AspNet.Owin.Security.Core.csproj">
+    <ProjectReference Include="..\AspNet.Owin.Security.Core\AspNet.Owin.Security.Core.csproj">
       <Project>{ab7967f6-d40f-4692-a8d8-56d2cc9105a4}</Project>
       <Name>AspNet.Owin.Security.Core</Name>
     </ProjectReference>
