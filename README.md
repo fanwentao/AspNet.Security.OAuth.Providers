@@ -18,4 +18,5 @@ OAuth2.0 Providers for ASP.NET 4.5
 
 ## NuGet
 - **Weibo: [https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0](https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0)**
-
+- **WeChat: [https://www.nuget.org/packages/AspNet.Owin.Security.WeChat](https://www.nuget.org/packages/AspNet.Owin.Security.WeChat)**
+- **Tencent: [https://www.nuget.org/packages/AspNet.Owin.Security.Tencent](https://www.nuget.org/packages/AspNet.Owin.Security.Tencent)**
