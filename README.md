@@ -1,10 +1,12 @@
-# AspNet.Security.OAuth.Providers
+# OAuth2.0 基于OWin外部登录中间件
 
 OAuth2.0 Providers for ASP.NET 4.5 Implementation from **[Katana](http://katanaproject.codeplex.com/)**
 
-## Getting started
+项目代码结构和实现源自**[Katana](http://katanaproject.codeplex.com/)**项目,我只做了一点微小的工作,更多细节请查看项目源代码.
 
-**Adding social authentication to your application is a breeze** and just requires a few lines in your `Startup` class:
+## 入门
+
+**配置外部登录应用ClientId和ClientSecret值,并添加如下代码到 `Startup` class:
 
     app.UseWeChatAuthentication(
         appId:"******",
