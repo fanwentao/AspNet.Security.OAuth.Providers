@@ -49,6 +49,9 @@ namespace OAuth2._0ProvidersDemo
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
 
+
+
+
             // 配置腾讯开发平台第三方登录中间件
             app.UseTencentAuthentication(
                 appId: "******",
