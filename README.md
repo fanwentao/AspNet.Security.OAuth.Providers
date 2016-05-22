@@ -7,12 +7,12 @@ OAuth2 authentication middleware for ASP.NET 4.5
 **Adding social authentication to your application is a breeze** and just requires a few lines in your `Startup` class:
 
     app.UseWeChatAuthentication(
-        appId:"******";
-        appSecret:"******";
+        appId:"******",
+        appSecret:"******"
     );
     app.UseWeiboAuthentication(
-        clientId:"******";
-        clientSecret:"******";
+        clientId:"******",
+        clientSecret:"******"
     );
     
 
