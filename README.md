@@ -1,6 +1,6 @@
 # AspNet.Security.OAuth.Providers
 
-OAuth2.0 Providers for ASP.NET 4.5
+OAuth2.0 Providers for ASP.NET 4.5 Implementation from **[Katana](http://katanaproject.codeplex.com/)**
 
 ## Getting started
 
