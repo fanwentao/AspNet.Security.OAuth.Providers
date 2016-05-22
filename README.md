@@ -12,5 +12,5 @@ OAuth2 authentication middleware for ASP.NET 4.5
     );
 
 ## NuGet
-- **AspNet.Owin.Security.Weibo: [https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0](https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0)**
+- **Weibo: [https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0](https://www.nuget.org/packages/AspNet.Owin.Security.Weibo/1.0.0)**
 
