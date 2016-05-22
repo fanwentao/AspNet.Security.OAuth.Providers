@@ -15,7 +15,7 @@
 
 ## 入门
 
-配置外部登录应用ClientId和ClientSecret值,并添加如下代码到 `Startup` class:
+配置外部登录应用 `ClientId` 和 `ClientSecret` 值,并添加如下代码到 `Startup` class:
 
     app.UseWeChatAuthentication(
         appId:"******",
@@ -33,15 +33,16 @@
 ## 配置回调地址
 
 回调地址必须和第三方登录应用程序的配置相同.
-回调地址基于 Katana 默认约定,也可以手动创建 Options 配置 CallbackPath 属性
 
-* Weibo: /signin-weibo
+回调地址基于 **[Katana](http://katanaproject.codeplex.com/)** 默认约定,也可以手动创建 `Options` 配置 `CallbackPath` 属性
 
-* WeChat: /signin-wechat
+* Weibo: `/signin-weibo`
 
-* Tencent: /signin-tencent
+* WeChat: `/signin-wechat`
 
+* Tencent: `/signin-tencent`
 
+```
     app.UseTencentAuthentication(new TencentAuthenticationOptions
             {
                 AppId = "******",
@@ -49,3 +50,4 @@
                 CallbackPath = new PathString("你的回调地址")
             }
     );
+```
