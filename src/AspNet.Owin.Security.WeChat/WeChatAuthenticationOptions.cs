@@ -15,7 +15,7 @@ namespace AspNet.Owin.Security.WeChat
             Caption = Constants.DefaultAuthenticationType;
             Scope = new List<string>
             {
-                "snsapi_login"
+                "snsapi_userinfo"
             };
 
             TokenEndpoint = Constants.TokenEndpoint;

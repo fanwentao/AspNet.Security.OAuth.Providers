@@ -103,10 +103,9 @@ namespace AspNet.Owin.Security.WeChat
                         ClaimsIdentity.DefaultRoleClaimType)
                 };
 
-
-                if (String.IsNullOrEmpty(context.Unionid))
+                if (String.IsNullOrEmpty(context.OpenId))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.Unionid, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.OpenId, XmlSchemaString, Options.AuthenticationType));
                 }
                 if (!String.IsNullOrEmpty(context.NickName))
                 {

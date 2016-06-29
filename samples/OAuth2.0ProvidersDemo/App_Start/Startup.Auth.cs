@@ -48,14 +48,10 @@ namespace OAuth2._0ProvidersDemo
             // 此选项类似于在登录时提供的“记住我”选项。
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-
-
-
-
             // 配置腾讯开发平台第三方登录中间件
             app.UseTencentAuthentication(
-                appId: "******",
-                appKey: "******");
+                    appId: "******",
+                    appKey: "******");
 
             // 配置微博第三方登录中间件
             app.UseWeiboAuthentication(
