@@ -55,7 +55,7 @@ namespace AspNet.Owin.Security.WeChat
                 if (!ValidateCorrelationId(properties, _logger))
                     return new AuthenticationTicket(null, properties);
 
-                if (String.IsNullOrWhiteSpace(code))
+                if (string.IsNullOrWhiteSpace(code))
                 {
                     return new AuthenticationTicket(null, properties);
                 }
@@ -78,7 +78,7 @@ namespace AspNet.Owin.Security.WeChat
                 string expireIn = tokenJObject.Value<string>("expires_in");
                 string openId = tokenJObject.Value<string>("openid");
 
-                if (String.IsNullOrWhiteSpace(accessToken))
+                if (string.IsNullOrWhiteSpace(accessToken))
                 {
                     _logger.WriteWarning("Access token was not found");
                     return new AuthenticationTicket(null, properties);
@@ -103,19 +103,19 @@ namespace AspNet.Owin.Security.WeChat
                         ClaimsIdentity.DefaultRoleClaimType)
                 };
 
-                if (String.IsNullOrEmpty(context.OpenId))
+                if (!string.IsNullOrEmpty(context.OpenId))
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.OpenId, XmlSchemaString, Options.AuthenticationType));
                 }
-                if (!String.IsNullOrEmpty(context.NickName))
+                if (!string.IsNullOrEmpty(context.NickName))
                 {
                     context.Identity.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, context.NickName, XmlSchemaString, Options.AuthenticationType));
                 }
-                if (!String.IsNullOrEmpty(context.Country))
+                if (!string.IsNullOrEmpty(context.Country))
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.Country, context.Country, XmlSchemaString, Options.AuthenticationType));
                 }
-                if (!String.IsNullOrEmpty(context.Sex))
+                if (!string.IsNullOrEmpty(context.Sex))
                 {
                     context.Identity.AddClaim(new Claim(ClaimTypes.Gender, context.Sex, XmlSchemaString, Options.AuthenticationType));
                 }
@@ -167,7 +167,7 @@ namespace AspNet.Owin.Security.WeChat
                 if (context.Identity != null && context.SignInAsAuthenticationType != null)
                 {
                     var identity = context.Identity;
-                    if (!String.Equals(identity.AuthenticationType, context.SignInAsAuthenticationType, StringComparison.Ordinal))
+                    if (!string.Equals(identity.AuthenticationType, context.SignInAsAuthenticationType, StringComparison.Ordinal))
                     {
                         identity = new ClaimsIdentity(identity.Claims, context.SignInAsAuthenticationType, identity.NameClaimType, identity.RoleClaimType);
                     }
@@ -219,14 +219,14 @@ namespace AspNet.Owin.Security.WeChat
                     Options.CallbackPath;
 
                 var properties = challenge.Properties;
-                if (String.IsNullOrEmpty(properties.RedirectUri))
+                if (string.IsNullOrEmpty(properties.RedirectUri))
                     properties.RedirectUri = currentUri;
 
                 // OAuth2 10.12 CSRF
                 GenerateCorrelationId(properties);
 
                 // 应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可
-                string scope = String.Join(", ", Options.Scope);
+                string scope = string.Join(", ", Options.Scope);
 
                 // 用于保持请求和回调的状态，授权请求后原样带回给第三方。
                 // 该参数可用于防止csrf攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加session进行校验
