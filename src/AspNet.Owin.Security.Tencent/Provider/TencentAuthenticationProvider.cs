@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AspNet.Owin.Security.Core.Common;
 
 namespace AspNet.Owin.Security.Tencent.Provider
 {
@@ -8,14 +7,15 @@ namespace AspNet.Owin.Security.Tencent.Provider
     {
         public TencentAuthenticationProvider()
         {
-            OnAuthenticated = context => TaskHelpers.Completed();
-            OnReturnEndpoint = context => TaskHelpers.Completed();
+            OnAuthenticated = context => Task.CompletedTask;
+            OnReturnEndpoint = context => Task.CompletedTask;
             OnApplyRedirect = context => context.Response.Redirect(context.RedirectUri);
         }
 
         public Func<TencentAuthenticatedContext, Task> OnAuthenticated { get; set; }
         public Func<TencentReturnEndpointContext, Task> OnReturnEndpoint { get; set; }
         public Action<TencentApplyRedirectContext> OnApplyRedirect { get; set; }
+
         public virtual Task Authenticated(TencentAuthenticatedContext context)
         {
             return OnAuthenticated(context);

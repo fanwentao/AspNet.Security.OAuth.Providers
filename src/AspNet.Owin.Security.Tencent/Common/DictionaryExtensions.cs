@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 
-namespace AspNet.Owin.Security.Core.Common
+namespace AspNet.Owin.Security.Tencent.Common
 {
     public static class DictionaryExtensions
     {

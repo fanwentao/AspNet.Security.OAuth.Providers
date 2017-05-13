@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.Owin.Security.Weibo", "src\AspNet.Owin.Security.Weibo\AspNet.Owin.Security.Weibo.csproj", "{0A8DDFF6-36B0-4882-9BCF-DDB756E3AF26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.Owin.Security.WeChat", "src\AspNet.Owin.Security.WeChat\AspNet.Owin.Security.WeChat.csproj", "{46E33702-BB98-4B2E-A245-474214B431C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.Owin.Security.Tencent", "src\AspNet.Owin.Security.Tencent\AspNet.Owin.Security.Tencent.csproj", "{C0FD2A9D-2E9A-4105-98EF-07E311ECCB71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNet.Owin.Security.Core", "src\AspNet.Owin.Security.Core\AspNet.Owin.Security.Core.csproj", "{AB7967F6-D40F-4692-A8D8-56D2CC9105A4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth2.0ProvidersDemo", "samples\OAuth2.0ProvidersDemo\OAuth2.0ProvidersDemo.csproj", "{FE33C0EE-002B-40AC-859F-884FC3F055E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +27,6 @@ Global
 		{C0FD2A9D-2E9A-4105-98EF-07E311ECCB71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0FD2A9D-2E9A-4105-98EF-07E311ECCB71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0FD2A9D-2E9A-4105-98EF-07E311ECCB71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AB7967F6-D40F-4692-A8D8-56D2CC9105A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AB7967F6-D40F-4692-A8D8-56D2CC9105A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AB7967F6-D40F-4692-A8D8-56D2CC9105A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AB7967F6-D40F-4692-A8D8-56D2CC9105A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE33C0EE-002B-40AC-859F-884FC3F055E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE33C0EE-002B-40AC-859F-884FC3F055E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE33C0EE-002B-40AC-859F-884FC3F055E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE33C0EE-002B-40AC-859F-884FC3F055E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

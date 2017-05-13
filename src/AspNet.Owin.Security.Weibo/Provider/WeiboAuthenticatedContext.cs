@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Security.Claims;
-using AspNet.Owin.Security.Core.Common;
+using AspNet.Owin.Security.Weibo.Common;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;

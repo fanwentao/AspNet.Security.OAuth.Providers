@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AspNet.Owin.Security.Core.Common;
 using AspNet.Owin.Security.Weibo.Provider;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
@@ -14,7 +13,6 @@ namespace AspNet.Owin.Security.Weibo
 {
     public class WeiboAuthenticationHandler : AuthenticationHandler<WeiboAuthenticationOptions>
     {
-        private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
 
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
@@ -91,17 +89,15 @@ namespace AspNet.Owin.Security.Weibo
                 var context = new WeiboAuthenticatedContext(Context, user, accessToken, expiresIn);
 
                 context.Identity = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, context.Id, XmlSchemaString,
-                        Options.AuthenticationType),
-                    new Claim(ClaimTypes.Name, context.Name, XmlSchemaString,
-                        Options.AuthenticationType),
-                    new Claim("urn:weiboaccount:id", context.Id, XmlSchemaString,
-                        Options.AuthenticationType),
-                    new Claim("urn:weiboaccount:name", context.Name, XmlSchemaString,
-                        Options.AuthenticationType),
-                    new Claim(ClaimTypes.Gender, context.Gender, XmlSchemaString, Options.AuthenticationType)
-                },
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, context.Id, ClaimValueTypes.String,
+                            Options.AuthenticationType),
+                        new Claim(ClaimTypes.Name, context.Name, ClaimValueTypes.String, Options.AuthenticationType),
+                        new Claim("gender", context.Gender, ClaimValueTypes.String, Options.AuthenticationType),
+                        new Claim("profile_image_url", context.ProfileImageUrl, ClaimValueTypes.String,
+                            Options.AuthenticationType),
+                        new Claim("description", context.Description, ClaimValueTypes.String, Options.AuthenticationType),
+                    },
                     Options.AuthenticationType,
                     ClaimsIdentity.DefaultNameClaimType,
                     ClaimsIdentity.DefaultRoleClaimType);
@@ -177,7 +173,7 @@ namespace AspNet.Owin.Security.Weibo
         {
             if (Response.StatusCode != 401)
             {
-                return TaskHelpers.Completed();
+                return Task.CompletedTask;
             }
 
             var challenge = Helper.LookupChallenge(Options.AuthenticationType, Options.AuthenticationMode);
@@ -207,7 +203,7 @@ namespace AspNet.Owin.Security.Weibo
 
                 Options.Provider.ApplyRedirect(context);
             }
-            return TaskHelpers.Completed();
+            return Task.CompletedTask;
         }
 
 

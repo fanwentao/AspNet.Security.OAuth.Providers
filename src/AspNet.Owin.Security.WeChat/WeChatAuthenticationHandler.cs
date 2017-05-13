@@ -2,7 +2,6 @@
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using AspNet.Owin.Security.Core.Common;
 using AspNet.Owin.Security.WeChat.Provider;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
@@ -14,7 +13,6 @@ namespace AspNet.Owin.Security.WeChat
 {
     public class WeChatAuthenticationHandler : AuthenticationHandler<WeChatAuthenticationOptions>
     {
-        private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
 
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
@@ -103,22 +101,41 @@ namespace AspNet.Owin.Security.WeChat
                         ClaimsIdentity.DefaultRoleClaimType)
                 };
 
+                if (!string.IsNullOrEmpty(context.Unionid))
+                {
+                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.Unionid, ClaimValueTypes.String, Options.AuthenticationType));
+                }
                 if (!string.IsNullOrEmpty(context.OpenId))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.OpenId, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim("openid", context.OpenId, ClaimValueTypes.String, Options.AuthenticationType));
                 }
                 if (!string.IsNullOrEmpty(context.NickName))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, context.NickName, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Name, context.NickName, ClaimValueTypes.String, Options.AuthenticationType));
+                }
+                if (!string.IsNullOrEmpty(context.City))
+                {
+                    context.Identity.AddClaim(new Claim("city", context.City, ClaimValueTypes.String, Options.AuthenticationType));
                 }
                 if (!string.IsNullOrEmpty(context.Country))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.Country, context.Country, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim("country", context.Country, ClaimValueTypes.String, Options.AuthenticationType));
                 }
                 if (!string.IsNullOrEmpty(context.Sex))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.Gender, context.Sex, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim("sex", context.Sex, ClaimValueTypes.String, Options.AuthenticationType));
                 }
+                if (!string.IsNullOrEmpty(context.Province))
+                {
+                    context.Identity.AddClaim(new Claim("province", context.Province, ClaimValueTypes.String, Options.AuthenticationType));
+                }
+                if (!string.IsNullOrEmpty(context.HeadimgUrl))
+                {
+                    context.Identity.AddClaim(new Claim("headimgurl", context.HeadimgUrl, ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
+
+
                 context.Properties = properties;
 
                 await Options.Provider.Authenticated(context);
@@ -195,7 +212,7 @@ namespace AspNet.Owin.Security.WeChat
         {
             if (Response.StatusCode != 401)
             {
-                return TaskHelpers.Completed();
+                return Task.CompletedTask;
             }
 
             // 查询响应的授权类型是否匹配的当前Options的授权类型的详细信息
@@ -244,7 +261,7 @@ namespace AspNet.Owin.Security.WeChat
                 Options.Provider.ApplyRedirect(context);
 
             }
-            return TaskHelpers.Completed();
+            return Task.CompletedTask;
         }
     }
 }

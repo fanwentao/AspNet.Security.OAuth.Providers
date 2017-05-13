@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Security.Claims;
-using AspNet.Owin.Security.Core.Common;
+using AspNet.Owin.Security.WeChat.Common;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;
@@ -37,6 +37,7 @@ namespace AspNet.Owin.Security.WeChat.Provider
             City = user.GetValueOrDefault("city");
             Unionid = user.GetValueOrDefault("unionid");
             HeadimgUrl = user.GetValueOrDefault("headimgurl");
+
         }
 
         public JObject User { get; }

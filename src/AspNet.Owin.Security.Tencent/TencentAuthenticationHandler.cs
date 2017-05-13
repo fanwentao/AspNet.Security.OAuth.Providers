@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
-using AspNet.Owin.Security.Core.Common;
 using AspNet.Owin.Security.Tencent.Provider;
 using Microsoft.Owin.Infrastructure;
 using Microsoft.Owin.Logging;
@@ -15,7 +14,6 @@ namespace AspNet.Owin.Security.Tencent
 {
     public class TencentAuthenticationHandler : AuthenticationHandler<TencentAuthenticationOptions>
     {
-        private const string XmlSchemaString = "http://www.w3.org/2001/XMLSchema#string";
         private readonly HttpClient _httpClient;
         private readonly ILogger _logger;
         public TencentAuthenticationHandler(HttpClient httpClient, ILogger logger)
@@ -124,19 +122,26 @@ namespace AspNet.Owin.Security.Tencent
 
                 if (!String.IsNullOrEmpty(context.OpenId))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.OpenId, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, context.OpenId, ClaimValueTypes.String, Options.AuthenticationType));
                 }
                 if (!String.IsNullOrEmpty(context.NickName))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimsIdentity.DefaultNameClaimType, context.NickName, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim(ClaimTypes.Name, context.NickName, ClaimValueTypes.String, Options.AuthenticationType));
                 }
                 if (!String.IsNullOrEmpty(context.Gender))
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.Gender, context.Gender, XmlSchemaString, Options.AuthenticationType));
+                    context.Identity.AddClaim(new Claim("gender", context.Gender, ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                context.Identity.AddClaim(new Claim("urn:tencentaccount:id", context.OpenId, XmlSchemaString, Options.AuthenticationType));
-                context.Identity.AddClaim(new Claim("urn:tencentaccount:nickname", context.NickName, XmlSchemaString,
-                    Options.AuthenticationType));
+                if (!String.IsNullOrEmpty(context.FigureUrl1))
+                {
+                    context.Identity.AddClaim(new Claim("figureurl_qq_1", context.FigureUrl1, ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
+                if (!String.IsNullOrEmpty(context.FigureUrl2))
+                {
+                    context.Identity.AddClaim(new Claim("figureurl_qq_2", context.FigureUrl2, ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
 
                 context.Properties = properties;
 
@@ -154,7 +159,7 @@ namespace AspNet.Owin.Security.Tencent
         protected override Task ApplyResponseChallengeAsync()
         {
             if (Context.Response.StatusCode != 401)
-                return TaskHelpers.Completed();
+                return Task.CompletedTask;
 
 
             // 查询响应的授权类型是否匹配的当前Options的授权类型的详细信息
@@ -195,7 +200,7 @@ namespace AspNet.Owin.Security.Tencent
                 Options.Provider.ApplyRedirect(context);
             }
 
-            return TaskHelpers.Completed();
+            return Task.CompletedTask;
         }
 
         public override async Task<bool> InvokeAsync()

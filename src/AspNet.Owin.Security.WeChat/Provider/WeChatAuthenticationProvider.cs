@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AspNet.Owin.Security.Core.Common;
 
 namespace AspNet.Owin.Security.WeChat.Provider
 {
@@ -8,8 +7,8 @@ namespace AspNet.Owin.Security.WeChat.Provider
     {
         public WeChatAuthenticationProvider()
         {
-            OnAuthenticated = context => TaskHelpers.Completed();
-            OnReturnEndpoint = context => TaskHelpers.Completed();
+            OnAuthenticated = context => Task.CompletedTask;
+            OnReturnEndpoint = context => Task.CompletedTask;
             OnApplyRedirect = context => context.Response.Redirect(context.RedirectUri);
         }
 

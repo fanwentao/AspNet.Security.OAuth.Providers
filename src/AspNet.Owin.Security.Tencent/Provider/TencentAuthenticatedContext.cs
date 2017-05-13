@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Security.Claims;
-using AspNet.Owin.Security.Core.Common;
+using AspNet.Owin.Security.Tencent.Common;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Provider;
@@ -30,7 +30,8 @@ namespace AspNet.Owin.Security.Tencent.Provider
             }
             NickName = user.GetValueOrDefault("nickname");
             Gender = user.GetValueOrDefault("gender");
-            FigureUrl = user.GetValueOrDefault("figureurl_qq_1");
+            FigureUrl1 = user.GetValueOrDefault("figureurl_qq_1");
+            FigureUrl2 = user.GetValueOrDefault("figureurl_qq_2");
         }
 
         /// <summary>
@@ -44,9 +45,12 @@ namespace AspNet.Owin.Security.Tencent.Provider
         /// <summary>
         /// 大小为40×40像素的QQ头像URL。
         /// </summary>
-        public string FigureUrl { get; }
+        public string FigureUrl1 { get; }
+
+        public string FigureUrl2 { get; set; }
         public string AccessToken { get; }
         public string RefreshToken { get; }
+
         /// <summary>
         /// openid是此网站上唯一对应用户身份的标识
         /// </summary>
